@@ -1,0 +1,1212 @@
+@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:wght@300;400;700&display=swap'); */
+
+/* ৩. এরপর আপনার কাস্টম থিম বা কোড */
+@theme {
+  --color-primary: #87550d;
+  --font-merriweather: "Merriweather", serif;
+  --font-lora: "Lora", serif;
+
+  /* শ্যাডো ভেরিয়েবল (v4 এ এভাবে লিখতে হয়) */
+  --shadow-soft-1: 0 6px 24px -8px rgba(0, 0, 0, 0.15);
+  --shadow-soft-2: 0 12px 36px -10px rgba(0, 0, 0, 0.20);
+  --shadow-soft-3: 0 18px 48px -12px rgba(0, 0, 0, 0.28);
+  --shadow-glow: 0 0 0 2px rgba(135, 85, 13, 0.2), 0 12px 40px -6px rgba(135, 85, 13, 0.35);
+}
+
+/* Base resets or other styles */
+
+body {
+  font-family: var(--font-lora);
+}
+
+
+
+
+/* --- General & Premium Styles --- */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.btn-premium {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(to bottom right, #87550d, #9e6b1a);
+  color: #fff;
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.28);
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  inset: -150% auto auto -40%;
+  width: 30%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.6s ease;
+}
+
+.btn-premium:hover::before {
+  transform: translateX(260%) rotate(25deg);
+}
+
+.card-premium {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.card-premium:hover {
+  box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.28);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend: multiply;
+}
+
+/* --- Floating Animations --- */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@keyframes float-fast {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-fast {
+  animation: float-fast 5s ease-in-out infinite;
+}
+
+/* --- Why Choose Us Section --- */
+.w-choose-us-tab {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: #475569; /* slate-600 */
+}
+
+.w-choose-us-tab div {
+  background-color: #f1f5f9; /* slate-100 */
+  color: #475569; /* slate-600 */
+  transition: all 0.3s;
+}
+
+.w-choose-us-tab:hover div {
+  background-color: #fde68a; /* amber-200 */
+  color: var(--color-primary);
+}
+
+.w-choose-us-tab.active {
+  background-color: #fff;
+  border-color: #e2e8f0; /* slate-200 */
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.15); /* shadow-soft-1 */
+  color: var(--color-primary);
+}
+
+.w-choose-us-tab.active div {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(135, 85, 13, 0.2),
+    0 12px 40px -6px rgba(135, 85, 13, 0.35); /* shadow-glow */
+}
+
+.w-choose-us-panel {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Image Gallery Scroller --- */
+
+
+/* --- Video Section --- */
+.video-card-container {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.video-card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.28);
+}
+
+.video-card-container::before {
+  content: "";
+  position: absolute;
+  inset: -200%;
+  z-index: 1;
+  background: conic-gradient(
+    from 90deg,
+    transparent 50%,
+    var(--color-primary),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.video-card-container:hover::before {
+  opacity: 1;
+  animation: spin 3s linear infinite;
+}
+
+.video-card-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.65rem;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.video-modal-container {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.video-modal-container:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Team Section --- */
+.team-card {
+  position: relative;
+  border-radius: 0.75rem; /* 12px */
+  padding: 2px; /* Border thickness */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  overflow: hidden; /* Hide the glowing border when it's outside */
+}
+
+.team-card:hover {
+  transform: translateY(-8px); /* More pronounced lift */
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.35); /* Stronger shadow */
+}
+
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: -200%; /* Make the background large enough to rotate fully */
+  z-index: 1;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 50%,
+    var(--color-primary) 60%,
+    /* Start of glow */ var(--tw-color-primary-light, #ba863a) 70%,
+    /* Brighter part of glow */ transparent 80% /* End of glow */
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.team-card:hover::before {
+  opacity: 0.8; /* Slight opacity for a subtle glow */
+  animation: rotate-glow 4s linear infinite;
+}
+
+@keyframes rotate-glow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.team-card-inner {
+  position: relative;
+  z-index: 2; /* Ensures content is above the glow */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly more opaque for content clarity */
+  border-radius: 0.65rem; /* Slightly smaller than container */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.15); /* Soft inner shadow */
+  border: 1px solid rgba(15, 23, 42, 0.08); /* Subtle inner border */
+  transition: background-color 0.3s ease;
+}
+
+.team-card:hover .team-card-inner {
+  background: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+}
+
+.social-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60px; /* Fixed width for the panel */
+  background: hsla(
+    var(--tw-color-primary-hsl, 35 81% 29%) / 0.95
+  ); /* Slightly darker for contrast */
+  backdrop-filter: blur(5px); /* Stronger blur */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem; /* Increased gap */
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother animation */
+  z-index: 3; /* Ensure it's above other elements */
+  border-top-right-radius: 0.65rem;
+  border-bottom-right-radius: 0.65rem;
+}
+
+.team-card:hover .social-panel {
+  transform: translateX(0);
+}
+
+.social-link {
+  color: white;
+  padding: 0.6rem; /* Larger hit area */
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.social-link:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1); /* Pop effect on hover */
+}
+
+/* --- Footer Section --- */
+.footer-link {
+  @apply text-slate-400 hover:text-primary transition-colors;
+}
+
+.social-link-footer {
+  @apply h-10 w-10 flex items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:bg-primary hover:text-white transition-all;
+}
+
+/* --- FAQ Accordion Styles --- */
+.faq-trigger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.faq-item.active .faq-trigger span {
+  color: var(--color-primary);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* --- Menu Dropdown Z-index Fix (Updated) --- */
+
+/* 1. Ensure parent list items can contain positioned dropdowns */
+#navWrap nav ul li.group, 
+#navWrap nav ul li.relative { /* Covers both 'group' for hover and general 'relative' if used */
+    position: relative; /* Necessary for absolute positioning of child dropdowns */
+}
+
+/* 2. Style for regular dropdown menus (like 'About' and 'Media') */
+#navWrap nav ul li .absolute { 
+    position: absolute; /* Must be absolute */
+    /* Add your existing styles for appearance (background, shadow, border, etc.) */
+    background-color: white; 
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    /* Add styles for initial hidden state and transition if needed */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    margin-top: 0.5rem; /* Adjust spacing */
+    
+    /* --- Z-index --- */
+    z-index: 50; /* Ensure dropdowns are above the news bulletin (z-49 or lower) */
+}
+
+/* Show regular dropdown on hover */
+#navWrap nav ul li.group:hover > .absolute {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* 3. Style specifically for the Mega Menu (Services) */
+#navWrap nav ul li .mega-menu {
+    position: absolute; /* Must be absolute */
+    /* Add your existing styles for appearance */
+    background-color: white; 
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    /* Add styles for initial hidden state and transition */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) translateX(-50%); /* Adjust as needed */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    left: 50%; /* Center alignment */
+    margin-top: 0.5rem; /* Adjust spacing */
+
+    /* --- Z-index --- */
+    z-index: 50; /* Ensure mega menu is also above the news bulletin */
+}
+
+/* Show mega menu on hover */
+#navWrap nav ul li.group:hover > .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(-50%);
+}
+
+/* 4. Mobile Menu (Should already be fine, but ensure z-index) */
+#mobileMenu {
+    position: absolute; /* Or fixed, depending on your implementation */
+    width: 100%; 
+    background-color: white; /* Or your mobile menu background */
+    /* Add other mobile menu styles */
+
+    /* --- Z-index --- */
+    z-index: 50; /* Ensure mobile menu slides over the news bulletin */
+}
+
+/* Make sure the news bulletin itself has a lower z-index */
+.news-bulletin {
+    position: sticky; /* Or relative if header is fixed */
+    /* Add your sticky 'top' value here, e.g., top: 60px; */
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 49; /* <<< Lower than dropdowns/menus */
+}
+
+/* --- Mobile Menu Accordion Styles --- */
+.mobile-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.mobile-accordion.active .mobile-accordion-content {
+  /* max-height is set by JS */
+}
+
+.mobile-accordion.active .mobile-accordion-trigger svg {
+  transform: rotate(180deg);
+}
+
+/* --- REMOVE or REPLACE Old Testimonial Styles --- */
+/* You can safely delete these old styles for the slider */
+.testimonial-card > div {
+  /* This style is no longer needed */
+}
+
+.testimonial-card:hover > div {
+  /* This style is no longer needed */
+}
+
+.testimonial-dot {
+  /* This style is no longer needed */
+}
+
+.testimonial-dot.active {
+  /* This style is no longer needed */
+}
+
+/* --- Testimonial Card Paragraph Fix --- */
+.testimonial-card-item p {
+  margin-bottom: 0.5rem; /* Adds a little space between paragraphs */
+}
+
+.testimonial-card-item p:last-child {
+  margin-bottom: 0; /* Removes space after the last paragraph */
+}
+
+/* --- CSS for 3-line clamp and scroll on testimonial text --- */
+.testimonial-text-box {
+  /* Step 1: Limit the text to 3 lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  /* Step 2: Set a specific height for the box */
+  max-height: 72px; /* Approx 3 lines (24px line-height * 3) */
+  /* Step 3: Enable vertical scrolling */
+  overflow-y: auto;
+  /* Step 4: Style the scrollbar for a better look (optional) */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #cbd5e1 #f1f5f9; /* For Firefox */
+}
+
+/* For Chrome, Safari, and other WebKit browsers */
+.testimonial-text-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.testimonial-text-box::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.testimonial-text-box::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+
+/* psw */
+
+/* --- Timeline Section Styles --- */
+.timeline-container {
+  position: relative;
+  max-width: 48rem;
+  /* max-w-3xl */
+  margin: 0 auto;
+}
+
+/* The vertical line */
+.timeline-container::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background-color: #e2e8f0;
+  /* slate-200 */
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+}
+
+.timeline-item {
+  padding: 1rem 2.5rem;
+  position: relative;
+  width: 50%;
+}
+
+/* The circle on the timeline */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  /* w-5 */
+  height: 1.25rem;
+  /* h-5 */
+  right: -0.625rem;
+  /* -(w-5/2) */
+  background-color: white;
+  border: 4px solid var(--color-primary);
+  top: 1.5rem;
+  border-radius: 9999px;
+  /* rounded-full */
+  z-index: 1;
+}
+
+.timeline-item:not(.timeline-item-right) {
+  left: 0;
+}
+
+.timeline-item-right {
+  left: 50%;
+}
+
+.timeline-item-right::after {
+  left: -0.625rem;
+}
+
+.timeline-content {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  /* rounded-xl */
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.15);
+  /* shadow-soft-1 */
+  border: 1px solid #f1f5f9;
+  /* slate-100 */
+  position: relative;
+}
+
+.timeline-item-right .timeline-content {
+  text-align: left;
+}
+
+.timeline-item:not(.timeline-item-right) .timeline-content {
+  text-align: right;
+}
+
+.timeline-step {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  /* text-xs */
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-title {
+  font-family: "Merriweather", serif;
+  /* font-heading */
+  font-size: 1.25rem;
+  /* text-xl */
+  color: #1e293b;
+  /* slate-800 */
+}
+
+.timeline-text {
+  font-size: 1rem;
+  /* text-base */
+  color: #475569;
+  /* slate-600 */
+  margin-top: 0.5rem;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .timeline-container::after {
+    left: 0.875rem;
+    /* closer to the left */
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 3rem;
+    /* space for the line and dot */
+    padding-right: 0;
+  }
+
+  .timeline-item-right {
+    left: 0%;
+  }
+
+  .timeline-item::after,
+  .timeline-item-right::after {
+    left: 0.25rem;
+  }
+
+  .timeline-item:not(.timeline-item-right) .timeline-content,
+  .timeline-item-right .timeline-content {
+    text-align: left;
+  }
+}
+
+.tab-button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.tab-panel {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Definitive Contact Form Input Styles --- */
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  /* rounded-lg */
+  background-color: #ffffff;
+  /* Clean white background */
+  border: 1px solid #cbd5e1;
+  /* Visible slate-300 border */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  /* Removes default OS styling on select/date */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  /* Primary color border on focus */
+  box-shadow: 0 0 0 3px rgba(135, 85, 13, 0.2);
+  /* Primary color ring on focus */
+}
+
+/* Add custom arrow for select dropdown */
+select.form-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+
+
+
+/* asylum  */
+
+
+        /* Custom CSS for 3D Flip Cards */
+        .flip-card {
+            background-color: transparent;
+            height: 320px;
+            /* Increased height to accommodate short description */
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Safari */
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            overflow: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background-image: linear-gradient(to bottom right, #87550D, #9e6b1a);
+            /* Primary Gradient */
+            color: white;
+            display: flex;
+            /* Centering content */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+            /* p-6 */
+        }
+ 
+
+
+        /* skilled worker  */
+
+         /* রেসপন্সিভ টেবিলের জন্য CSS অপরিবর্তিত রয়েছে */
+    @media (max-width: 768px) {
+        .responsive-table thead { display: none; }
+        .responsive-table tbody, .responsive-table tr, .responsive-table td { display: block; }
+        .responsive-table tr {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .responsive-table td {
+            padding-left: 50%; position: relative; text-align: right;
+            padding-top: 0.5rem; padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .responsive-table tr td:last-child { border-bottom: none; }
+        .responsive-table td::before {
+            content: attr(data-label); position: absolute; left: 0;
+            width: 45%; padding-right: 10px; text-align: left;
+            font-weight: 600; color: #475569;
+        }
+        .responsive-table td[data-label="RELATED JOB TITLES"] {
+            padding-left: 0; text-align: left; margin-top: 0.5rem;
+        }
+         .responsive-table td[data-label="RELATED JOB TITLES"]::before {
+            position: static; display: block; width: 100%; margin-bottom: 0.5rem;
+        }
+    }
+
+
+    /* applicaiton guidance  */
+
+       .card-zoom-effect {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card-zoom-effect:hover {
+            transform: scale(1.03) !important;
+            /* এই !important টি যেকোনো conflict সমাধান করবে */
+        }
+
+
+
+        /* skilled worker application  */
+
+
+     
+        .custom-file-input {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .custom-file-input:hover {
+            border-color: #87550D;
+            box-shadow: 0 0 0 1px rgba(135, 85, 13, 0.3);
+        }
+
+        .custom-file-input input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-input .file-name {
+            flex-grow: 1;
+            padding-right: 1rem;
+            color: #4b5563;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .custom-file-input .file-button {
+            background-color: #87550D;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        /* New Step Indicator Styles */
+        .step-indicator {
+            border: 1px solid #e5e7eb;
+            /* slate-200 */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .step-indicator.active {
+            border-color: #87550D;
+            /* primary */
+            background-color: #fef3c7;
+            /* amber-100 */
+            box-shadow: 0 4px 14px -4px rgba(135, 85, 13, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .step-indicator.active .step-number {
+            background-color: #87550D;
+            color: white;
+        }
+
+        .step-indicator.active .step-title {
+            color: #87550D;
+            /* primary */
+            font-weight: 700;
+        }
+
+
+        /* For Desktop Menu Active Link */
+.nav-active {
+  color: #FBBF24 !important; /* amber-300 */
+  font-weight: 700;
+}
+
+/* For Mobile Menu Active Link */
+.mobile-nav-active {
+  background-color: #f1f5f9; /* slate-100 */
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+
+/* gallery section */
+
+/* Base styles for the scroller container */
+.scroller {
+  max-width: 100%; /* Ensure it doesn't overflow its parent */
+  overflow: hidden; /* Hide content outside the container */
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); /* Fades edges */
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); /* For Webkit browsers */
+}
+
+/* Inner container that holds the items and will be animated */
+.scroller__inner {
+  padding-block: 1rem; /* Adjust as needed */
+  display: flex;
+  flex-wrap: nowrap; /* Prevent items from wrapping */
+  gap: 1rem; /* Space between gallery cards */
+  width: max-content; /* Ensure content takes natural width */
+  animation: scroll var(--_animation-duration) linear infinite; /* Apply animation */
+}
+
+/* Pause animation on hover for a better user experience */
+.scroller__inner:hover {
+  animation-play-state: paused;
+}
+
+/* Animation speed based on data-speed attribute */
+.scroller[data-speed="slow"] {
+  --_animation-duration: 120s; /* Slower animation */
+}
+
+.scroller[data-speed="medium"] {
+  --_animation-duration: 90s; /* Medium animation */
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 40s; /* Faster animation */
+}
+
+/* Keyframes for the scrolling animation */
+@keyframes scroll {
+  to {
+    transform: translateX(-50%); /* Scrolls content to the left by 50% of its width */
+  }
+}
+
+/* Styles for individual gallery cards */
+.gallery-card {
+  /* Ensure your card styles are defined here */
+  /* Example: */
+  background-color: white;
+  border-radius: 0.75rem; /* Equivalent to rounded-xl */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  overflow: hidden;
+  min-width: 250px; /* Minimum width for each card */
+  flex-shrink: 0; /* Prevent cards from shrinking */
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0; /* Apply border-radius to top corners */
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+
+/* --- START: New Step Indicator Styles for Completed State --- */
+.step-indicator.completed {
+    background-color: #f0fdf4; /* green-50 */
+    border-color: #22c55e; /* green-500 */
+}
+
+.step-indicator.completed .step-number {
+    background-color: #22c55e; /* green-500 */
+    color: white;
+}
+
+.step-indicator.completed .step-title {
+    color: #166534; /* green-800 */
+    font-weight: 700;
+}
+/* --- END: New Step Indicator Styles for Completed State --- */
+
+
+/* --- START: New Step Indicator Styles for Error State --- */
+.step-indicator.error {
+    background-color: #fee2e2; /* red-100 */
+    border-color: #ef4444; /* red-500 */
+}
+
+.step-indicator.error .step-number {
+    background-color: #ef4444; /* red-500 */
+    color: white;
+}
+
+.step-indicator.error .step-title {
+    color: #991b1b; /* red-800 */
+    font-weight: 700;
+}
+/* --- END: New Step Indicator Styles for Error State --- */
+
+
+/* --- News Bulletin Styles --- */
+/* (আপনার আগের যোগ করা স্টাইলগুলো) */
+.news-bulletin {
+    position: relative;
+    z-index: 49; 
+    background-color: white; /* নিশ্চিত করুন ব্যাকগ্রাউন্ড সাদা */
+    border-bottom: 1px solid #e2e8f0; /* slate-200 */
+}
+
+.news-bulletin .container { /* প্রয়োজন হলে প্যাডিং অ্যাডজাস্ট করুন */
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem;
+}
+
+.news-bulletin .flex {
+    height: 2.5rem; /* 40px */
+    align-items: center;
+}
+
+.news-bulletin .scroller {
+    -webkit-mask: none;
+    mask: none;
+    width: 100%;
+    overflow: hidden; /* গুরুত্বপূর্ণ: ওভারফ্লো হিডেন থাকতে হবে */
+}
+
+.news-bulletin__inner {
+    display: flex; /* আইটেমগুলোকে এক লাইনে আনে */
+    padding-block: 0; 
+    gap: 2.5rem; 
+    align-items: center; 
+    width: max-content; /* গুরুত্বপূর্ণ: কন্টেন্টের মোট প্রস্থ অনুযায়ী হবে */
+    
+    /* --- অ্যানিমেশন --- */
+    animation: scroll 100s linear infinite;
+    /* animation: scroll 120s linear infinite !important; */
+}
+
+.news-bulletin__item {
+    list-style: none;
+    flex-shrink: 0; 
+    white-space: nowrap; 
+}
+
+.news-bulletin__item a {
+    transition: color 0.2s ease-in-out;
+    color: var(--color-primary); 
+}
+
+.news-bulletin__item a:hover {
+    color: #b45309; /* amber-700 */
+}
+
+/* --- স্ক্রলিং অ্যানিমেশন Keyframes --- */
+@keyframes scroll {
+  from {
+    transform: translateX(0); /* শুরু */
+  }
+  to {
+    transform: translateX(-50%); /* অর্ধেক পর্যন্ত স্ক্রল করে লুপ করার জন্য */
+  }
+}
+
+/* হোভার করলে অ্যানিমেশন থামানোর জন্য (Optional) */
+.news-bulletin .scroller:hover .scroller__inner {
+  animation-play-state: paused;
+}
+
+
+.scroller {
+  max-width: 100%;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.tag-list {
+  margin: 0;
+  padding-inline: 0;
+  list-style: none;
+}
+
+.gallery-card {
+  position: relative;
+  
+  /* --- সমাধান এখানে --- */
+  /* কার্ডকে লম্বা (Portrait) করা হয়েছে */
+  width: 280px; 
+  height: 400px;
+  /* --- সমাধান শেষ --- */
+
+  border-radius: 0.75rem; /* rounded-xl */
+  overflow: hidden;
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.15); /* shadow-soft-1 */
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition: all 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.28); /* shadow-soft-3 */
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* --- মূল সমাধান এখানে --- */
+  /* ছবিকে ওপর থেকে দেখানো হয়েছে, তাই মাথা কেটে যাবে না */
+  object-position: top center;
+  /* --- মূল সমাধান শেষ --- */
+
+  transition: transform 0.3s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay h3 {
+  font-family: "Merriweather", serif; /* font-heading */
+  font-size: 1.25rem; /* text-xl */
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay h3 {
+  transform: translateY(0);
+}
+
+/* --- Why Choose Us - Hover BG Colors --- */
+
+.card-premium.hover-bg-amber:hover {
+    background-color: #fffbeb; /* amber-50 */
+}
+.card-premium.hover-bg-sky:hover {
+    background-color: #f0f9ff; /* sky-50 */
+}
+.card-premium.hover-bg-emerald:hover {
+    background-color: #ecfdf5; /* emerald-50 */
+}
+.card-premium.hover-bg-rose:hover {
+    background-color: #fff1f2; /* rose-50 */
+}
+.card-premium.hover-bg-indigo:hover {
+    background-color: #eef2ff; /* indigo-50 */
+}
+.card-premium.hover-bg-teal:hover {
+    background-color: #f0fdfa; /* teal-50 */
+}
+
+.card-premium {
+  /* আপনার আগের কোডগুলো থাকবে... */
+  
+  /* যাকুনি বন্ধ করার জন্য এই ৩টি লাইন যোগ করুন */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  transform: translateZ(0); 
+  will-change: transform;
+}

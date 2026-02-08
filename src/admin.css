@@ -1,0 +1,99 @@
+/* src/admin.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #87550D; border-radius: 10px; }
+
+/* sidebar active link style */
+.sidebar-link.active {
+    background-color: rgba(135, 85, 13, 0.08);
+    color: #87550D;
+    border-right: 4px solid #87550D;
+}
+
+
+
+/* হোভার জুম ইফেক্ট */
+.admin-card-zoom {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-card-zoom:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(135, 85, 13, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* সাইডবার লিঙ্ক হোভার এনিমেশন */
+.sidebar-link-premium {
+    transition: all 0.2s ease;
+}
+
+.sidebar-link-premium:hover {
+    padding-left: 2rem !important;
+    background-color: rgba(135, 85, 13, 0.05);
+}
+
+
+
+/* স্মুথ ট্রানজিশন লজিক */
+.stat-card-premium {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stat-card-premium:hover {
+    transform: translateY(-6px);
+}
+
+/* আইকন বক্সের স্পেশাল হোভার */
+.stat-icon-box {
+    transition: all 0.4s ease;
+}
+
+.group:hover .stat-icon-box {
+    transform: scale(1.1);
+}
+
+
+/* --- CKEditor Premium Styles --- */
+
+/* ১. এডিটরের হাইট ফিক্স এবং বর্ডার রেডিয়াস */
+.custom-ckeditor .ck-editor__editable_inline {
+    min-height: 250px;
+    max-height: 500px;
+    border-bottom-left-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    padding: 0 20px !important;
+}
+
+/* ২. টুলবার স্টাইল */
+.custom-ckeditor .ck-toolbar {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    background-color: #f8fafc !important; /* slate-50 */
+    border-color: #e2e8f0 !important; /* slate-200 */
+    ;
+}
+
+/* ৩. ফোকাস করলে আপনার প্রাইমারি কালার (ব্রাউন) আসবে */
+.custom-ckeditor .ck.ck-editor__editable.ck-focused {
+    border-color: #87550d !important; /* primary color */
+    box-shadow: 0 0 0 3px rgba(135, 85, 13, 0.1) !important;
+    outline: none !important;
+    
+}
+
+/* ৪. 'Powered by CKEditor' লোগো এবং ব্যানার পুরোপুরি রিমুভ */
+.ck-internal-banner-display, 
+.ck-powered-by {
+    display: none !important;
+}
+
+/* ৫. প্লেসহোল্ডার টেক্সট সাইজ */
+.custom-ckeditor .ck-placeholder {
+    font-size: 14px;
+    color: #94a3b8 !important; /* slate-400 */
+}
