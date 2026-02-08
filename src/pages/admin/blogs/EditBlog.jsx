@@ -25,7 +25,7 @@ const EditBlog = () => {
   useEffect(() => {
     const fetchBlogDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/blog/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/blog/single/${id}`);
         const data = response.data;
         
         setFormData({
@@ -72,7 +72,7 @@ const EditBlog = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/blog/update/${id}`, data);
+      const response = await axios.put(`https://stonebridge-api.onrender.com/api/blog/update/${id}`, data);
       if (response.data.success) {
         Swal.fire({
           title: 'Updated!',

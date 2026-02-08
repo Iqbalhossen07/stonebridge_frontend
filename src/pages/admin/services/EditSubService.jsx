@@ -24,7 +24,7 @@ const EditSubService = () => {
   useEffect(() => {
     const fetchSubServiceData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/sub-service/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/sub-service/single/${id}`);
         const data = response.data;
         
         setFormData({
@@ -66,7 +66,7 @@ const EditSubService = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/sub-service/update/${id}`, data);
+      const response = await axios.put(`https://stonebridge-api.onrender.com/api/sub-service/update/${id}`, data);
       if (response.data.success) {
         Swal.fire({
           title: 'Updated!',

@@ -12,7 +12,7 @@ const AdminLayout = ({ children }) => {
   useEffect(() => {
     const getAdminData = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/check-auth', { 
+        const res = await axios.get('https://stonebridge-api.onrender.com/api/admin/check-auth', { 
           withCredentials: true 
         });
         if (res.data.authenticated) {

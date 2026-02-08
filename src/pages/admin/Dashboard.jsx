@@ -20,7 +20,7 @@ const Dashboard = () => {
     // ২. ডাটাবেস থেকে অ্যাডমিনের লেটেস্ট তথ্য নিয়ে আসা
     const fetchAdmin = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/check-auth', { 
+        const res = await axios.get('https://stonebridge-api.onrender.com/api/admin/check-auth', { 
           withCredentials: true 
         });
         if (res.data.authenticated) {
@@ -51,7 +51,7 @@ const [counts, setCounts] = useState({
 useEffect(() => {
   const fetchAllStats = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/all-stats', { withCredentials: true });
+      const res = await axios.get('https://stonebridge-api.onrender.com/api/admin/all-stats', { withCredentials: true });
       setCounts(res.data);
     } catch (err) {
       console.error("Error fetching stats:", err);

@@ -16,7 +16,7 @@ const Services = () => {
   const fetchServices = async () => {
     try {
       // এই এপিআইটি আপনার মেইন সার্ভিসের সাথে সাব-সার্ভিসগুলোও নিয়ে আসবে
-      const res = await axios.get('http://localhost:5000/api/service/all-with-sub');
+      const res = await axios.get('https://stonebridge-api.onrender.com/api/service/all-with-sub');
       setServices(res.data);
       // ডাটা আসার পর AOS রিফ্রেশ যাতে এনিমেশন ঠিক থাকে
       setTimeout(() => { AOS.refresh(); }, 100);
@@ -62,8 +62,8 @@ const Services = () => {
       try {
         // টাইপ অনুযায়ী আলাদা আলাদা এপিআই কল করা
         let apiUrl = type === 'Service' 
-          ? `http://localhost:5000/api/service/delete/${id}`
-          : `http://localhost:5000/api/sub-service/delete/${id}`;
+          ? `https://stonebridge-api.onrender.com/api/service/delete/${id}`
+          : `https://stonebridge-api.onrender.com/api/sub-service/delete/${id}`;
 
         const response = await axios.delete(apiUrl);
 

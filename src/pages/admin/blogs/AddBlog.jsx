@@ -38,7 +38,7 @@ const AddBlog = () => {
     data.append('image', formData.image);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/blog/add', data);
+      const response = await axios.post('https://stonebridge-api.onrender.com/api/blog/add', data);
       if (response.data.success) {
         Swal.fire({
           title: 'Success!',

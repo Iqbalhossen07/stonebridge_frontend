@@ -24,7 +24,7 @@ const EditTestimonial = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/testimonial/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/testimonial/single/${id}`);
         const data = response.data;
         
         setFormData({
@@ -69,7 +69,7 @@ const EditTestimonial = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/testimonial/update/${id}`, data);
+      const response = await axios.put(`https://stonebridge-api.onrender.com/api/testimonial/update/${id}`, data);
       if (response.data.success) {
         Swal.fire({
           title: 'Updated!',

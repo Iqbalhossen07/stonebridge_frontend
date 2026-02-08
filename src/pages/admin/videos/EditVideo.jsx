@@ -31,7 +31,7 @@ const EditVideo = () => {
   useEffect(() => {
     const fetchVideoDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/video/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/video/single/${id}`);
         const data = response.data;
         
         setFormData({
@@ -58,7 +58,7 @@ const EditVideo = () => {
     setUpdating(true);
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/video/update/${id}`, formData);
+      const response = await axios.put(`https://stonebridge-api.onrender.com/api/video/update/${id}`, formData);
       if (response.data.success) {
         Swal.fire({
           title: 'Updated!',

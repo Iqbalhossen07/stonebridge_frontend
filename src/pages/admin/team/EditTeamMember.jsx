@@ -25,7 +25,7 @@ const EditTeamMember = () => {
   useEffect(() => {
     const fetchMemberDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/team/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/team/single/${id}`);
         const data = response.data;
         
         setFormData({
@@ -72,7 +72,7 @@ const EditTeamMember = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/team/update/${id}`, data);
+      const response = await axios.put(`https://stonebridge-api.onrender.com/api/team/update/${id}`, data);
       if (response.status === 200) {
         Swal.fire({
           title: 'Updated!',

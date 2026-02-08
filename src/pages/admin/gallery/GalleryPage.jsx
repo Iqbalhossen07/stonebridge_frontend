@@ -15,7 +15,7 @@ const Gallery = () => {
   // এপিআই থেকে গ্যালারি ডাটা আনা
   const fetchGallery = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/gallery/all');
+      const response = await axios.get('https://stonebridge-api.onrender.com/api/gallery/all');
       setImages(response.data);
     } catch (error) {
       console.error("Fetch error", error);
@@ -52,7 +52,7 @@ const Gallery = () => {
     formData.append('caption', caption);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/gallery/upload', formData, {
+      const res = await axios.post('https://stonebridge-api.onrender.com/api/gallery/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -89,7 +89,7 @@ const Gallery = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/api/gallery/delete/${id}`);
+          await axios.delete(`https://stonebridge-api.onrender.com/api/gallery/delete/${id}`);
           setImages(prev => prev.filter(img => img._id !== id));
           Swal.fire('Deleted!', 'Image has been removed.', 'success');
         } catch (error) {

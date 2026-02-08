@@ -14,7 +14,7 @@ const VideoGallery = () => {
   // ডাটাবেস থেকে সব ভিডিও লোড করা
   const fetchVideos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/video/all');
+      const response = await axios.get('https://stonebridge-api.onrender.com/api/video/all');
       setVideos(response.data);
       setTimeout(() => { AOS.refresh(); }, 100);
     } catch (error) {
@@ -60,7 +60,7 @@ const VideoGallery = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:5000/api/video/delete/${id}`);
+          const response = await axios.delete(`https://stonebridge-api.onrender.com/api/video/delete/${id}`);
           if (response.data.success) {
             setVideos(prev => prev.filter(v => v._id !== id));
             Swal.fire('Deleted!', 'Video has been removed.', 'success');

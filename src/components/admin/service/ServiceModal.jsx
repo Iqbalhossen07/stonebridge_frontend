@@ -44,10 +44,10 @@ const ServiceModal = ({ isOpen, onClose, editData = null }) => {
       let response;
       if (editData) {
         // আপডেট লজিক
-        response = await axios.put(`http://localhost:5000/api/service/update/${editData._id}`, formData);
+        response = await axios.put(`https://stonebridge-api.onrender.com/api/service/update/${editData._id}`, formData);
       } else {
         // নতুন সার্ভিস তৈরি
-        response = await axios.post('http://localhost:5000/api/service/add', formData);
+        response = await axios.post('https://stonebridge-api.onrender.com/api/service/add', formData);
       }
 
       if (response.data.success) {

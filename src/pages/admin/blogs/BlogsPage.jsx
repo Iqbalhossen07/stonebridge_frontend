@@ -13,7 +13,7 @@ const Blogs = () => {
   // ডাটাবেস থেকে সব ব্লগ লোড করার ফাংশন
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/blog/all');
+      const response = await axios.get('https://stonebridge-api.onrender.com/api/blog/all');
       setBlogs(response.data);
       // ডাটা আসার পর AOS রিফ্রেশ করা যাতে ডাটা লুকিয়ে না থাকে
       setTimeout(() => {
@@ -44,7 +44,7 @@ const Blogs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:5000/api/blog/delete/${id}`);
+          const response = await axios.delete(`https://stonebridge-api.onrender.com/api/blog/delete/${id}`);
           if (response.data.success) {
             setBlogs(blogs.filter(b => b._id !== id));
             Swal.fire('Deleted!', 'Blog has been deleted.', 'success');

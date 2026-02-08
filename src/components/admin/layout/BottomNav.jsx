@@ -22,7 +22,7 @@ const BottomNav = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.post('http://localhost:5000/api/admin/logout', {}, { withCredentials: true });
+          const res = await axios.post('https://stonebridge-api.onrender.com/api/admin/logout', {}, { withCredentials: true });
           if (res.data.success) window.location.href = '/login';
         } catch (error) { window.location.href = '/login'; }
       }

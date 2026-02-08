@@ -32,7 +32,7 @@ const AddVideo = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/video/add', videoData);
+      const response = await axios.post('https://stonebridge-api.onrender.com/api/video/add', videoData);
       
       if (response.data.success) {
         Swal.fire({

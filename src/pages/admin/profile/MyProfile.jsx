@@ -23,7 +23,7 @@ const MyProfile = () => {
     
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/check-auth', { 
+        const res = await axios.get('https://stonebridge-api.onrender.com/api/admin/check-auth', { 
           withCredentials: true 
         });
         if (res.data.admin) {
@@ -87,7 +87,7 @@ const MyProfile = () => {
       }
 
       try {
-        const res = await axios.put('http://localhost:5000/api/admin/update-profile', data, {
+        const res = await axios.put('https://stonebridge-api.onrender.com/api/admin/update-profile', data, {
           withCredentials: true,
           headers: { 'Content-Type': 'multipart/form-data' }
         });

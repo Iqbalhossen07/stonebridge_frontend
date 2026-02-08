@@ -51,7 +51,7 @@ const AddTeamMember = () => {
     data.append('image', formData.t_image); // ব্যাকএন্ডে upload.single('image') নাম অনুযায়ী
 
     try {
-      const response = await axios.post('http://localhost:5000/api/team/add', data, {
+      const response = await axios.post('https://stonebridge-api.onrender.com/api/team/add', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

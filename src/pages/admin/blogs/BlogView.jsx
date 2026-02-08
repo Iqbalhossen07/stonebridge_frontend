@@ -13,7 +13,7 @@ const BlogView = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/blog/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/blog/single/${id}`);
         setBlog(response.data);
       } catch (error) {
         console.error("Error fetching blog details:", error);
@@ -47,7 +47,7 @@ const BlogView = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5000/api/blog/delete/${id}`);
+          await axios.delete(`https://stonebridge-api.onrender.com/api/blog/delete/${id}`);
           Swal.fire('Deleted!', 'Blog has been deleted.', 'success');
           navigate('/admin/blogs');
         } catch (error) {

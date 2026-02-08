@@ -38,7 +38,7 @@ const Sidebar = ({ isMobile, onClose }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.post('http://localhost:5000/api/admin/logout', {}, { withCredentials: true });
+          const res = await axios.post('https://stonebridge-api.onrender.com/api/admin/logout', {}, { withCredentials: true });
           if (res.data.success) {
             Swal.fire({ title: 'Logged Out!', text: 'Successfully logged out.', icon: 'success', confirmButtonColor: '#87550D' })
             .then(() => { window.location.href = '/login'; });

@@ -12,7 +12,7 @@ const Team = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/team/all');
+      const response = await axios.get('https://stonebridge-api.onrender.com/api/team/all');
       if (Array.isArray(response.data)) {
         setMembers(response.data);
       } else if (response.data.success && Array.isArray(response.data.data)) {
@@ -47,7 +47,7 @@ const Team = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:5000/api/team/delete/${id}`);
+          const response = await axios.delete(`https://stonebridge-api.onrender.com/api/team/delete/${id}`);
           if (response.status === 200) {
             setMembers(prev => prev.filter(m => m._id !== id)); 
             Swal.fire('Deleted!', 'Member has been removed.', 'success');

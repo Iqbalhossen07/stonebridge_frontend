@@ -13,7 +13,7 @@ const TeamMemberView = () => {
   useEffect(() => {
     const fetchMember = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/team/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/team/single/${id}`);
         // ব্যাকএন্ড সরাসরি মেম্বার অবজেক্ট পাঠাচ্ছে
         setMember(response.data);
       } catch (error) {

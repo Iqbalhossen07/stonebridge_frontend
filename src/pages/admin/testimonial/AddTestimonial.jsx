@@ -43,7 +43,7 @@ const AddTestimonial = () => {
     data.append('image', formData.image);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/testimonial/add', data);
+      const response = await axios.post('https://stonebridge-api.onrender.com/api/testimonial/add', data);
       if (response.data.success) {
         Swal.fire({
           title: 'Success!',

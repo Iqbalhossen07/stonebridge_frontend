@@ -13,7 +13,7 @@ const TestimonialView = () => {
   useEffect(() => {
     const fetchTestimonial = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/testimonial/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/testimonial/single/${id}`);
         setTestimonial(response.data);
       } catch (error) {
         console.error("Error fetching details:", error);

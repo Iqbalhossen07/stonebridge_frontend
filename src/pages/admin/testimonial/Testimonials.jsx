@@ -13,7 +13,7 @@ const Testimonials = () => {
   // ডাটাবেস থেকে সব টেস্টিমোনিয়াল লোড করা
   const fetchTestimonials = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/testimonial/all');
+      const response = await axios.get('https://stonebridge-api.onrender.com/api/testimonial/all');
       setTestimonials(response.data);
       
       // ডাটা আসার পর AOS রিফ্রেশ করা যাতে ডাটা লুকিয়ে না থাকে
@@ -44,7 +44,7 @@ const Testimonials = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:5000/api/testimonial/delete/${id}`);
+          const response = await axios.delete(`https://stonebridge-api.onrender.com/api/testimonial/delete/${id}`);
           if (response.data.success) {
             setTestimonials(prev => prev.filter(t => t._id !== id));
             Swal.fire('Deleted!', 'Success', 'success');

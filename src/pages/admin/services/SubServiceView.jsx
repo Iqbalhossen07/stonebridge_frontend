@@ -14,7 +14,7 @@ const SubServiceView = () => {
     const fetchSubService = async () => {
       try {
         // এই এপিআই পাথটি আপনার ব্যাকএন্ডের সাথে মিল রাখা হয়েছে
-        const response = await axios.get(`http://localhost:5000/api/sub-service/single/${id}`);
+        const response = await axios.get(`https://stonebridge-api.onrender.com/api/sub-service/single/${id}`);
         setSubService(response.data);
       } catch (error) {
         console.error("Error fetching sub-service:", error);

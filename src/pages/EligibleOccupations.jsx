@@ -17,7 +17,7 @@ const EligibleOccupations = () => {
     
     const fetchLiveData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/occupations');
+        const response = await axios.get('https://stonebridge-api.onrender.com/api/occupations');
         setData(response.data.data);
         setLoading(false);
       } catch (err) {
