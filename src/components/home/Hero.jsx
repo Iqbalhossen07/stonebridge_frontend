@@ -64,7 +64,7 @@ const Hero = () => {
             <div className="relative w-full max-w-3xl aspect-[16/9] bg-slate-200 rounded-xl flex items-center justify-center shadow-xl shadow-black/20 ring-1 ring-black/10 overflow-hidden">
                {/* Replace with actual video path later */}
                <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline controls>
-                  <source src="/video/stonebridge.mp4" type="video/mp4" />
+                  <source src="/videos/stonebridge.mp4" type="video/mp4" />
                </video>
             </div>
           </div>

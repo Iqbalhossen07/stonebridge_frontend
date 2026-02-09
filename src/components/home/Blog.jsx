@@ -1,57 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Blog = () => {
-  // ডামি ব্লগ ডাটা (পরবর্তীতে API থেকে আসবে)
-  const blogs = [
-    {
-      id: 1,
-      b_title: "Understanding UK Skilled Worker Visa Changes 2026",
-      b_des: "The UK government has introduced new salary thresholds and rules for skilled workers. Here is everything you need to know to stay compliant.",
-      b_image: "blog1.jfif",
-      b_date: "2026-02-01",
-      b_author: "Sonjoy Kumar Roy",
-      category_name: "Immigration"
-    },
-    {
-      id: 2,
-      b_title: "How to Switch from Graduate Visa to Skilled Worker",
-      b_des: "Are you currently on a PSW visa? Learn the step-by-step process of switching to a long-term work permit without leaving the UK.",
-      b_image: "blog2.jfif",
-      b_date: "2026-01-28",
-      b_author: "Legal Team",
-      category_name: "Visa Guide"
-    },
-    {
-      id: 3,
-      b_title: "Self-Sponsorship: A New Route for Entrepreneurs",
-      b_des: "Run your own business in the UK and sponsor yourself. We break down the legal requirements for this innovative visa route.",
-      b_image: "blog3.jfif",
-      b_date: "2026-01-15",
-      b_author: "Sonjoy Kumar Roy",
-      category_name: "Business"
-    },
-    {
-      id: 4,
-      b_title: "Common Asylum Claim Mistakes to Avoid",
-      b_des: "Legal representation is crucial in asylum cases. Avoid these three common errors that could lead to an immediate refusal.",
-      b_image: "blog4.jfif",
-      b_date: "2026-01-10",
-      b_author: "Legal Expert",
-      category_name: "Asylum"
-    }
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // তারিখ ফরম্যাট করার ফাংশন
+  // এপিআই থেকে ব্লগ ডাটা নিয়ে আসা
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get('https://stonebridge-api.onrender.com/api/blog/all');
+        setBlogs(response.data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
+  // তারিখ ফরম্যাট করার ফাংশন (createdAt ব্যবহার করা হবে)
   const formatDate = (dateString) => {
+    if (!dateString) return "";
     const options = { day: '2-digit', month: 'short', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-GB', options);
   };
 
-  // টেক্সট ট্রিম (Trimming) করার ফাংশন
-  const truncateText = (text, length) => {
-    return text.length > length ? text.substring(0, length) + "..." : text;
+  // টেক্সট ট্রিম করার ফাংশন (HTML ট্যাগ রিমুভ করে ট্রিম করবে)
+  const truncateText = (htmlContent, length) => {
+    const plainText = htmlContent.replace(/<[^>]*>/g, ''); // HTML ট্যাগ সরানোর জন্য
+    return plainText.length > length ? plainText.substring(0, length) + "..." : plainText;
   };
+
+  // ডাটা না থাকলে সেকশনটি দেখাবে না (স্লাইডার/গ্যালারির মতো একই লজিক)
+  if (loading) return null;
+  if (blogs.length === 0) return null;
 
   return (
     <section id="blog" className="relative py-24 bg-slate-50/50 overflow-hidden">
@@ -62,54 +47,56 @@ const Blog = () => {
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/20 mb-2">
             -Our Blog-
           </span>
-          <h2 className="font-heading text-2xl md:text-4xl text-slate-900 font-bold leading-tight" data-aos="fade-up" data-aos-delay="100">
+          <h2 className="font-heading text-2xl md:text-4xl text-slate-900 font-bold leading-tight" data-aos="fade-up">
             Learn From Experts
           </h2>
-          <p className="text-slate-600 mt-4 text-sm md:text-lg" data-aos="fade-up" data-aos-delay="200">
+          <p className="text-slate-600 mt-4 text-sm md:text-lg" data-aos="fade-up" data-aos-delay="100">
             Your Guide to Navigating UK Law—Expert Tips & Updates
           </p>
         </div>
 
-        {/* Blog Grid */}
+        {/* Blog Grid - হোম পেজে লেটেস্ট ৪টি ব্লগ দেখাবে */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {blogs.map((row, index) => (
+          {blogs.slice(0, 4).map((row, index) => (
             <article 
-              key={row.id} 
-              className="card-premium group" 
+              key={row._id} 
+              className="card-premium group bg-white rounded-xl shadow-md overflow-hidden" 
               data-aos="fade-up" 
-              data-aos-delay={300 + (index * 100)}
+              data-aos-delay={index * 100}
             >
-              <div className="relative overflow-hidden rounded-t-lg h-56">
+              <div className="relative overflow-hidden h-56">
+                {/* সরাসরি ক্লাউডিনারি ইউআরএল (row.image) ব্যবহার করা হয়েছে */}
                 <img 
-                  src={`app/blogImage/${row.b_image}`} 
-                  alt={row.b_title}
+                  src={row.image} 
+                  alt={row.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                 />
               </div>
               
               <div className="p-6">
                 <div className="text-xs text-slate-500 mb-3 flex items-center flex-wrap gap-1">
-                  {row.category_name && (
+                  {row.category && (
                     <>
-                      <span className="font-semibold text-primary ">{row.category_name}</span>
+                      <span className="font-semibold text-primary">{row.category}</span>
                       <span className="mx-1">&bull;</span>
                     </>
                   )}
-                  <span>{formatDate(row.b_date)}</span>
+                  <span>{formatDate(row.createdAt)}</span>
                   <span className="mx-1">&bull;</span>
-                  <span>{row.b_author}</span>
+                  <span>{row.author}</span>
                 </div>
 
                 <h3 className="font-heading font-semibold text-xl text-slate-800 mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                  <Link to={`/blog/${row.id}`}>{row.b_title}</Link>
+                  {/* স্লাগ (slug) থাকলে সেটি দিয়ে লিঙ্ক হবে, নাহলে আইডি */}
+                  <Link to={`/blog/${row.slug || row._id}`}>{row.title}</Link>
                 </h3>
 
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  {truncateText(row.b_des, 85)}
+                  {truncateText(row.description, 85)}
                 </p>
 
                 <Link 
-                  to={`/blog/${row.id}`} 
+                  to={`/blog/${row.slug || row._id}`} 
                   className="font-semibold text-sm text-primary hover:underline flex items-center gap-1"
                 >
                   Read More &rarr;
@@ -120,10 +107,10 @@ const Blog = () => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-16" data-aos="fade-up" data-aos-delay="600">
+        <div className="text-center mt-16">
           <Link 
-            to="/blog" 
-            className="px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-br from-primary to-amber-700 text-white border-2 border-transparent hover:border-primary"
+            to="/blogs" 
+            className="px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:-translate-y-0.5  bg-gradient-to-br from-primary to-amber-700 text-white hover:bg-none hover:bg-white hover:text-primary border-2 border-transparent hover:border-primary"
           >
             View All Blogs
           </Link>

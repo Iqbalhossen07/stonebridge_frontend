@@ -1,5 +1,5 @@
 @import "tailwindcss";
-/* @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:wght@300;400;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:wght@300;400;700&display=swap');
 
 /* ৩. এরপর আপনার কাস্টম থিম বা কোড */
 @theme {
@@ -1210,3 +1210,26 @@ select.form-input {
   transform: translateZ(0); 
   will-change: transform;
 }
+
+/* শুধু নিউজ বুলেটের জন্য এই ক্লাসটি */
+.news-scroll {
+  /* এখানে ২০ বা ৩০ সেকেন্ড দিলে বুলেটিন ধীরে চলবে */
+  animation: newsScroll 10s linear infinite; 
+}
+
+@keyframes newsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* মাউস রাখলে নিউজ থেমে যাবে (পড়ার সুবিধার জন্য) */
+.scroller:hover .news-scroll {
+  animation-play-state: paused;
+}
+
+
+

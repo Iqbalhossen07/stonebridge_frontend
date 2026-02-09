@@ -18,6 +18,7 @@ const VideoCard = ({ video, onPlay, onDelete, getYouTubeId }) => {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           alt={video.title}
         />
+        
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 transform scale-50 group-hover:scale-100 transition-transform duration-300">
               <i className="fas fa-play text-white text-xl ml-1"></i>

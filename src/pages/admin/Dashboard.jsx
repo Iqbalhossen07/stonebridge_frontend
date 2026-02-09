@@ -63,10 +63,13 @@ useEffect(() => {
 const stats = [
   { title: "Appointments", count: counts.appointments, icon: "fa-handshake", color: "border-primary", iconColor: "text-primary", bgColor: "bg-primary/10", delay: 100 },
   { title: "Team Members", count: counts.team, icon: "fa-users", color: "border-blue-500", iconColor: "text-blue-500", bgColor: "bg-blue-500/10", delay: 200 },
-  { title: "Our Services", count: counts.services, icon: "fa-concierge-bell", color: "border-green-500", iconColor: "text-green-500", bgColor: "bg-green-500/10", delay: 300 },
+  { title: "Main Services", count: counts.services, icon: "fa-concierge-bell", color: "border-green-500", iconColor: "text-green-500", bgColor: "bg-green-500/10", delay: 300 },
+  { title: "Sub-Services", count: counts.subservices, icon: "fa-layer-group", color: "border-cyan-500", iconColor: "text-cyan-500", bgColor: "bg-cyan-500/10", delay: 350 },
   { title: "Total Blogs", count: counts.blogs, icon: "fa-blog", color: "border-purple-500", iconColor: "text-purple-500", bgColor: "bg-purple-500/10", delay: 400 },
-  { title: "Testimonials", count: counts.testimonials, icon: "fa-comment-dots", color: "border-orange-500", iconColor: "text-orange-500", bgColor: "bg-orange-500/10", delay: 500 },
-  { title: "Gallery Photos", count: counts.gallery, icon: "fa-images", color: "border-rose-500", iconColor: "text-rose-500", bgColor: "bg-rose-500/10", delay: 600 }
+  { title: "Testimonials", count: counts.testimonials, icon: "fa-comment-dots", color: "border-orange-500", iconColor: "text-orange-500", bgColor: "bg-orange-500/10", delay: 450 },
+  { title: "Gallery Photos", count: counts.gallery, icon: "fa-images", color: "border-rose-500", iconColor: "text-rose-500", bgColor: "bg-rose-500/10", delay: 500 },
+  { title: "Time Slots", count: counts.timeslots, icon: "fa-clock", color: "border-indigo-500", iconColor: "text-indigo-500", bgColor: "bg-indigo-500/10", delay: 550 },
+  { title: "Videos", count: counts.videos, icon: "fa-video", color: "border-red-500", iconColor: "text-red-500", bgColor: "bg-red-500/10", delay: 600 }
 ];
 
   return (
@@ -80,13 +83,13 @@ const stats = [
         ))}
       </div>
 
-      <div className="mt-12">
+      {/* <div className="mt-12">
         <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
             <span className="w-1.5 h-8 bg-primary rounded-full"></span>
             Recent Appointments
         </h2>
         <RecentAppointments />
-      </div>
+      </div> */}
     </div>
   );
 };

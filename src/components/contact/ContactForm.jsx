@@ -1,7 +1,11 @@
+import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ContactForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     subject: '',
     full_name: '',
@@ -20,20 +24,26 @@ const ContactForm = () => {
     setIsCaptchaSolved(!!value);
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isCaptchaSolved) {
-      alert("Please solve the reCAPTCHA first.");
-      return;
+        Swal.fire('Error', "Please solve the reCAPTCHA first.", 'error');
+        return;
     }
+    
     setLoading(true);
-    // এখানে আপনার API কল বা logics.php তে ডাটা পাঠানোর লজিক হবে
-    console.log("Form Data Submitted:", formData);
-    setTimeout(() => {
-      setLoading(false);
-      alert("Message Sent Successfully!");
-    }, 2000);
-  };
+    try {
+        const res = await axios.post('https://stonebridge-api.onrender.com/api/contact/submit', formData);
+        if (res.data.success) {
+            // সাকসেস পেইজে পাঠানো হচ্ছে নাম সহ
+            navigate('/contact-success', { state: { name: formData.full_name } });
+        }
+    } catch (err) {
+        Swal.fire('Error', "Something went wrong. Try again.", 'error');
+    } finally {
+        setLoading(false);
+    }
+};
 
   return (
     <div data-aos="fade-up" className="border border-slate-200 rounded-lg p-6 shadow-sm bg-white">
@@ -113,7 +123,7 @@ const ContactForm = () => {
         <button 
           type="submit"
           disabled={!isCaptchaSolved || loading}
-          className={`w-full md:w-auto font-semibold transition-all duration-300 shadow-lg bg-gradient-to-br from-primary to-amber-700 text-white px-6 py-3 rounded-md ${
+          className={`w-full md:w-auto px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:-translate-y-0.5  bg-gradient-to-br from-primary to-amber-700 text-white hover:bg-none hover:bg-white hover:text-primary border-2 border-transparent hover:border-primary ${
             (!isCaptchaSolved || loading) ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:-translate-y-0.5 active:scale-95'
           }`}
         >

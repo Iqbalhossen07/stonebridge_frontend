@@ -104,7 +104,7 @@ const Sidebar = ({ isMobile, onClose }) => {
             <i className="fas fa-handshake w-5 text-center text-xs"></i>
             <span className="font-bold text-sm">Appointments</span>
           </div>
-          <span className="bg-red-500 text-white text-[10px] font-bold rounded-full px-2 py-0.5">2</span>
+          {/* <span className="bg-red-500 text-white text-[10px] font-bold rounded-full px-2 py-0.5">2</span> */}
         </Link>
 
         {/* Website Content */}

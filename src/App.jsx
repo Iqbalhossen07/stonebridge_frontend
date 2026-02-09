@@ -42,6 +42,7 @@ import TestimonialView from "./pages/admin/testimonial/TestimonialView";
 import MyProfile from "./pages/admin/profile/MyProfile";
 import ContactQueries from "./pages/admin/messages/ContactQueries";
 import Appointments from "./pages/admin/Appointments/Appointments";
+import AppointmentDetails from "./pages/admin/Appointments/AppointmentDetails";
 import Services from "./pages/admin/services/Services";
 import AddSubService from "./pages/admin/services/AddSubService";
 import SubServiceView from "./pages/admin/services/SubServiceView";
@@ -52,6 +53,10 @@ import EditTestimonial from "./pages/admin/testimonial/EditTestimonial";
 import EditSubService from "./pages/admin/services/EditSubService";
 import Login from "./pages/admin/login/Login";
 import ProtectedRoute from "./pages/admin/protected/ProtectedRoute";
+import TimeSlotPage from "./pages/admin/time/TimeSlotPage";
+import Appointment from "./pages/Appointment";
+import Success from "./pages/Success";
+import ContactSuccess from "./components/contact/ContactSuccess";
 
 // এই কম্পোনেন্টটি ডিসাইড করবে কখন Navbar/Footer দেখাবে
 const AppContent = () => {
@@ -70,7 +75,7 @@ const AppContent = () => {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/team-details/:id" element={<TeamDetailsPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/service-details/:id" element={<ServiceDetailsPage />} />
+        <Route path="/sub-service-details/:id" element={<ServiceDetailsPage />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog-details/:id" element={<BlogDetails />} />
         <Route path="/sponsor-checker" element={<SponsorChecker />} />
@@ -79,6 +84,9 @@ const AppContent = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/videos" element={<VideoPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/contact-success" element={<ContactSuccess />} />
+        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/booking-success" element={<Success />} />
 
         {/* --- Admin Routes (Wrapped in AdminLayout) --- */}
    
@@ -94,6 +102,10 @@ const AppContent = () => {
         <Routes>
           <Route path="dashboard" element={
             <AdminLayout name="Admin User" image="admin.png"><Dashboard /></AdminLayout>
+          } />
+          {/* time slots */}
+           <Route path="time" element={
+            <AdminLayout name="time" image="admin.png"><TimeSlotPage /></AdminLayout>
           } />
 
           {/* টিম মেম্বার রুটস */}
@@ -161,6 +173,11 @@ const AppContent = () => {
           } />
           <Route path="appointments" element={
             <AdminLayout name="appointments" image="admin.png"><Appointments /></AdminLayout>
+          } />
+
+
+           <Route path="appointment/:id" element={
+            <AdminLayout name="appointment-details" image="admin.png"><AppointmentDetails /></AdminLayout>
           } />
 
           {/* সার্ভিস ও সাব-সার্ভিস */}

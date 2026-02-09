@@ -50,7 +50,7 @@ const About = () => {
             </p>
 
             <div className="pt-6">
-              <Link to="/about" className="px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-br from-primary to-amber-700 text-white border-2 border-transparent hover:border-primary">
+              <Link to="/about-us" className="px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:-translate-y-0.5  bg-gradient-to-br from-primary to-amber-700 text-white hover:bg-none hover:bg-white hover:text-primary border-2 border-transparent hover:border-primary">
                 Learn More
               </Link>
             </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import TeamHero from '../components/team/TeamHero';
@@ -7,20 +8,38 @@ import CTA from '../components/common/CTA';
 
 const TeamPage = () => {
   const [teamMembers, setTeamMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // AOS এবং স্ক্রল পজিশন সেট
     AOS.init({ duration: 1000, once: true });
     window.scrollTo(0, 0);
 
-    // ডামি ডাটা (আপনি ডাটাবেস থেকে এটি লোড করবেন)
-    const members = [
-      { id: 1, t_name: "John Doe", t_designation: "Senior Advocate", t_image: "team1.jpg", t_facebook: "#", t_linkedin: "#" },
-      { id: 2, t_name: "Jane Smith", t_designation: "Immigration Specialist", t_image: "team2.jpg", t_facebook: "#", t_linkedin: "#" },
-      { id: 3, t_name: "Robert Brown", t_designation: "Corporate Lawyer", t_image: "team3.jpg", t_facebook: "#", t_linkedin: "#" },
-      { id: 4, t_name: "Sarah Wilson", t_designation: "Case Manager", t_image: "team4.jpg", t_facebook: "#", t_linkedin: "#" },
-    ];
-    setTeamMembers(members);
+    // ডাটাবেস থেকে টিম মেম্বারদের নিয়ে আসা
+    const fetchTeamMembers = async () => {
+      try {
+        const response = await axios.get('https://stonebridge-api.onrender.com/api/team/all');
+        // আপনার মডেল অনুযায়ী ডাটা 'order' ফিল্ড দিয়ে সর্ট হয়ে আসতে পারে
+        console.log(response.data);
+        setTeamMembers(response.data.data);
+      } catch (error) {
+        console.error("Error fetching team members:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeamMembers();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-primary"></div>
+        <p className="ml-3 font-semibold text-slate-600">Loading Experts...</p>
+      </div>
+    );
+  }
 
   return (
     <main className="bg-white min-h-screen">
@@ -46,9 +65,17 @@ const TeamPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <TeamCard key={member.id} member={member} delay={100 * (index + 1)} />
-            ))}
+            {teamMembers.length > 0 ? (
+              teamMembers.map((member, index) => (
+                <TeamCard 
+                  key={member._id} 
+                  member={member} 
+                  delay={100 * (index + 1)} 
+                />
+              ))
+            ) : (
+              <p className="text-center col-span-full text-slate-500 italic">No team members found.</p>
+            )}
           </div>
         </div>
       </section>

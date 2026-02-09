@@ -63,9 +63,9 @@ const Footer = () => {
             <div className="lg:mx-auto">
               <h4 className="font-heading text-lg text-white mb-4">Quick Links</h4>
               <ul className="space-y-3">
-                <li><Link to="/about" className="footer-link">About Us</Link></li>
+                <li><Link to="/about-us" className="footer-link">About Us</Link></li>
                 <li><Link to="/team" className="footer-link">Our Team</Link></li>
-                <li><Link to="/blog" className="footer-link">Blog</Link></li>
+                <li><Link to="/blogs" className="footer-link">Blog</Link></li>
                 <li><Link to="/contact" className="footer-link">Contact</Link></li>
               </ul>
             </div>
@@ -92,7 +92,7 @@ const Footer = () => {
 
             {/* Regulated Logo & Info */}
             <div>
-              <img src="/img/iaa-logo.jfif" alt="IAA Logo" className="mb-4 h-[100px] w-auto rounded" />
+              <img src="/img/6fa275d5-d6a4-458e-bee2-e82b2871a81d.jfif" alt="IAA Logo" className="mb-4 h-[100px] w-auto rounded" />
               <p className="text-slate-400 text-sm">
                 Stonebridge Legal Solutions Limited is authorised and regulated by the Immigration Advice Authority (IAA), Registration No: F202208988.
               </p>

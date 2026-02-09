@@ -44,7 +44,7 @@ const ServiceCard = ({ service, index }) => {
               
               {/* সাব-সার্ভিসের নাম এবং লিঙ্ক */}
               <Link 
-                to={`/service-details/${sub.id}`} 
+                to={`/sub-service-details/${sub.id}`} 
                 className="hover:text-primary transition-colors text-sm md:text-[15px] font-medium leading-tight inline-block"
               >
                 {/* নাম রেন্ডার করার মূল লজিক */}
